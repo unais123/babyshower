@@ -149,8 +149,8 @@ const VotingPage: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-8">
           {error && (
             <motion.div
-              initial={{ opacity: 0, h: 0 }}
-              animate={{ opacity: 1, h: 'auto' }}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
               className="bg-red-50 border border-red-200 text-red-600 px-6 py-4 rounded-2xl text-sm font-bold text-center"
             >
               {error === 'supabaseUrl is required.' ? 'Vercel Error: Supabase credentials missing in Dashboard.' : error}
