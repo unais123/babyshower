@@ -4,7 +4,6 @@ import { Users } from 'lucide-react';
 import { supabase, type VoteRecord } from '../lib/supabase';
 import confetti from 'canvas-confetti';
 import { cn } from '../lib/utils';
-import { GlassCard } from '../components/GlassCard';
 
 const LiveResults: React.FC = () => {
   const [votes, setVotes] = useState<VoteRecord[]>([]);
