@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# 👶 Premium Baby Shower Voting App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-end, real-time voting application designed for baby shower events. Guests can scan a QR code, predict the baby's gender, and watch results update live on a big screen with cinematic animations.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Mobile-First Voting**: Optimized for guests to vote quickly from their smartphones.
+- **Real-time Live Results**: Dynamic split-screen "VS" view for projectors, featuring live percentage updates and confetti bursts.
+- **Admin Dashboard**: Full control over votes, guest list, data export (CSV), and the "Grand Reveal" celebration trigger.
+- **Device Fingerprinting**: Prevents duplicate votes from the same device.
+- **Premium Aesthetics**: Glassmorphism UI, smooth Framer Motion animations, and custom luxury typography.
 
-## React Compiler
+## 🚀 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19 + Vite + TypeScript
+- **Styling**: Tailwind CSS v4 + Framer Motion
+- **Backend**: Supabase (Real-time PostgreSQL)
+- **Icons**: Lucide React
+- **Celebration**: Canvas Confetti
 
-## Expanding the ESLint configuration
+## 🛠️ Setup Instructions
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Supabase Backend
+1. Create a new project on [Supabase](https://supabase.com).
+2. Go to the **SQL Editor** and run the contents of `supabase_setup.sql`.
+3. Enable **Realtime** for the `votes` table in Database > Replication.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Environment Variables
+Create a `.env` file in the root directory:
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Installation
+```bash
+npm install
+npm run dev
 ```
+
+## 📱 Pages
+
+- `/` : **Voting Page** (The QR landing page for guests).
+- `/live` : **Live Results** (The projection screen for the venue).
+- `/admin` : **Admin Dashboard** (Management and Grand Reveal control).
+
+## 📄 License
+MIT
