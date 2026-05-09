@@ -13,6 +13,7 @@ const VotingPage: React.FC = () => {
   const [alreadyVoted, setAlreadyVoted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [stats, setStats] = useState({ boy: 0, girl: 0, total: 0 });
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (hasVoted()) {
@@ -61,9 +62,12 @@ const VotingPage: React.FC = () => {
         setVoted();
         setSubmitted(true);
         fetchStats();
+      } else {
+        setError(insertError.message);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      setError(err.message || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -143,6 +147,15 @@ const VotingPage: React.FC = () => {
         </header>
 
         <form onSubmit={handleSubmit} className="space-y-8">
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, h: 0 }}
+              animate={{ opacity: 1, h: 'auto' }}
+              className="bg-red-50 border border-red-200 text-red-600 px-6 py-4 rounded-2xl text-sm font-bold text-center"
+            >
+              {error === 'supabaseUrl is required.' ? 'Vercel Error: Supabase credentials missing in Dashboard.' : error}
+            </motion.div>
+          )}
           <GlassCard delay={0.1}>
             <div className="space-y-4">
               <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider ml-1">
