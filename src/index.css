@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-boy-light: #dbeafe;
+  --color-boy-DEFAULT: #3b82f6;
+  --color-boy-dark: #1e40af;
+  
+  --color-girl-light: #fce7f3;
+  --color-girl-DEFAULT: #ec4899;
+  --color-girl-dark: #9d174d;
+  
+  --color-luxury-gold: #d4af37;
+  --color-luxury-silver: #c0c0c0;
+  --color-luxury-cream: #fffdd0;
+
+  --font-premium: "Outfit", sans-serif;
+  --font-accent: "Dancing Script", cursive;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+:root {
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #f8fafc;
+}
+
+@utility glass {
+  background-color: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(12px);
+  border-width: 1px;
+  border-color: rgb(255 255 255 / 0.2);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+@utility glass-dark {
+  background-color: rgb(0 0 0 / 0.3);
+  backdrop-filter: blur(12px);
+  border-width: 1px;
+  border-color: rgb(255 255 255 / 0.1);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+@layer utilities {
+  .premium-gradient-boy {
+    background: radial-gradient(circle at top left, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+  }
+
+  .premium-gradient-girl {
+    background: radial-gradient(circle at top left, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+  }
+
+  .text-glow-boy {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  }
+
+  .text-glow-girl {
+    text-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+  }
+}
+
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  opacity: 0.3;
+  animation: float-particle linear infinite;
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+  }
+}
