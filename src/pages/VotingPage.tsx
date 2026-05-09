@@ -9,6 +9,8 @@ import { cn } from '../lib/utils';
 const VotingPage: React.FC = () => {
   const [name, setName] = useState('');
   const [selection, setSelection] = useState<'boy' | 'girl' | null>(null);
+  const [boyNameSuggestion, setBoyNameSuggestion] = useState('');
+  const [girlNameSuggestion, setGirlNameSuggestion] = useState('');
   const [loading, setLoading] = useState(false);
   const [alreadyVoted, setAlreadyVoted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -55,7 +57,9 @@ const VotingPage: React.FC = () => {
       const { error: insertError } = await supabase.from('votes').insert({
         name,
         vote: selection,
-        device_id: deviceId
+        device_id: deviceId,
+        boy_name_suggestion: boyNameSuggestion || null,
+        girl_name_suggestion: girlNameSuggestion || null
       });
 
       if (!insertError) {
@@ -225,6 +229,33 @@ const VotingPage: React.FC = () => {
               </GlassCard>
             </motion.div>
           </div>
+          
+          <GlassCard delay={0.2} className="space-y-6">
+            <div className="space-y-4">
+              <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider ml-1">
+                Boy Name Idea <span className="text-slate-400 font-normal normal-case">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                value={boyNameSuggestion}
+                onChange={(e) => setBoyNameSuggestion(e.target.value)}
+                placeholder="e.g. Liam, Noah"
+                className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-slate-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all text-slate-800"
+              />
+            </div>
+            <div className="space-y-4">
+              <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider ml-1">
+                Girl Name Idea <span className="text-slate-400 font-normal normal-case">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                value={girlNameSuggestion}
+                onChange={(e) => setGirlNameSuggestion(e.target.value)}
+                placeholder="e.g. Olivia, Emma"
+                className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-slate-200 focus:ring-2 focus:ring-pink-400 focus:border-transparent outline-none transition-all text-slate-800"
+              />
+            </div>
+          </GlassCard>
 
           <motion.button
             whileHover={{ scale: 1.02 }}

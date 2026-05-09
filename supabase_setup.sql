@@ -4,6 +4,8 @@ CREATE TABLE IF NOT EXISTS public.votes (
     name TEXT NOT NULL,
     vote TEXT NOT NULL CHECK (vote IN ('boy', 'girl')),
     device_id TEXT NOT NULL,
+    boy_name_suggestion TEXT,
+    girl_name_suggestion TEXT,
     created_at TIMESTAMPTZ DEFAULT now() NOT NULL
 );
 

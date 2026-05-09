@@ -16,5 +16,7 @@ export interface VoteRecord {
   name: string;
   vote: Vote;
   device_id: string;
+  boy_name_suggestion?: string;
+  girl_name_suggestion?: string;
   created_at: string;
 }
